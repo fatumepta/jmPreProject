@@ -10,6 +10,10 @@ import java.util.List;
 
 public class UserService {
     private static Connection connection = DBConnection.getConnection();
+    private static UserService instance;
+
+    private UserService() {
+    }
 
     private static UserDao getUserDao() {
         return new UserDao(connection);
@@ -35,6 +39,10 @@ public class UserService {
 
     public void dropTable() {
         getUserDao().dropTable();
+    }
+
+    public static UserService getInstance() {
+        return instance == null ? instance = new UserService() : instance;
     }
 
 }

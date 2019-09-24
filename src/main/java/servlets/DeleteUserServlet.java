@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteUserServlet", urlPatterns = "/delete")
 public class DeleteUserServlet extends HttpServlet {
-    UserService service = new UserService();
+    UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.getWriter().println("DELETE!");

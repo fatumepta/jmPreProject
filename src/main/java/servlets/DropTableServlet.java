@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "EditServlet", urlPatterns = "/edit")
-public class EditServlet extends HttpServlet {
+@WebServlet(name = "DropTableServlet", urlPatterns = "/drop")
+public class DropTableServlet extends HttpServlet {
     UserService service = UserService.getInstance();
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().println("EDIT!");
+
     }
 }
