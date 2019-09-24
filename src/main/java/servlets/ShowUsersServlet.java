@@ -13,10 +13,6 @@ import java.io.IOException;
 public class ShowUsersServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("users", service.getAllUsers());
         request.getRequestDispatcher("view/showUsers.jsp").forward(request, response);

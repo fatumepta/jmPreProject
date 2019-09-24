@@ -15,6 +15,7 @@ public class DropTableServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         service.dropTable();
+        response.sendRedirect("index.jsp");
         response.setStatus(200);
     }
 }

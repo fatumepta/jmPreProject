@@ -22,7 +22,7 @@ public class AddUserServlet extends HttpServlet {
             request.setAttribute("message", "user with login [" + login +  "] already exists!");
         }
 
-        this.doGet(request, response);
+        response.sendRedirect("/users");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

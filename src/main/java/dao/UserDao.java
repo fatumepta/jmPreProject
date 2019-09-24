@@ -18,7 +18,7 @@ public class UserDao implements Dao<User> {
     public Optional<User> get(long id) {
         Optional<User> user = Optional.empty();
 
-        try (PreparedStatement stmt = connection.prepareStatement("SELECT  * WHERE id=?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE id=?")) {
             stmt.setLong(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {

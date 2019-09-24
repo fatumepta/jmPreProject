@@ -15,6 +15,7 @@ public class CreateTableServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         service.createTable();
+        response.sendRedirect("index.jsp");
         response.setStatus(200);
     }
 }

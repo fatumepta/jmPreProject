@@ -21,8 +21,8 @@
                 <th> <%= user.getName() %></th>
                 <th> <%= user.getLogin() %></th>
                 <th>
-                    <a href="/edit">edit</a>
-                    <a href="/delete">delete</a>
+                    <a href=<%= "/edit?id=" + id %>>edit</a>
+                    <a href=<%= "delete?id=" + id %>>delete</a>
                 </th>
             </tr>
             <% } %>
@@ -31,6 +31,8 @@
 
     <p><hr></p>
     <%@ include file="addUser.jsp" %>
+    <p><hr></p>
+    <%@include file="/index.jsp" %>
 
 
 </body>

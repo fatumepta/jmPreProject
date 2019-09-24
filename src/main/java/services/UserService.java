@@ -33,6 +33,11 @@ public class UserService {
         }
     }
 
+    public void deleteUser(long id) {
+        UserDao dao = getUserDao();
+        dao.get(id).ifPresent(dao::delete);
+    }
+
     public void createTable() {
         getUserDao().createTable();
     }

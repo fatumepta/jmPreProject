@@ -14,6 +14,7 @@ public class DeleteUserServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().println("DELETE!");
+        service.deleteUser(Long.parseLong(request.getParameter("id")));
+        response.sendRedirect("/users");
     }
 }
