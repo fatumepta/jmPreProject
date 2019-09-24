@@ -8,20 +8,30 @@
 <body>
 
     <% List<User> users = (List<User>) request.getAttribute("users"); %>
-    <table width="100%" border="1" cellpadding="4" cellspacing="0">
-        <caption>List of users</caption>
-        <tr>
-            <th> id </th><th> name </th><th> login </th><th> options </th>
-        </tr>
-        <% for (User user: users) { %>
-        <tr>
-            <th> <%= user.getId() %></th>
-            <th> <%= user.getName() %></th>
-            <th> <%= user.getLogin() %></th>
-            <th> <%= "ACTION_1 ACTION_2" %></th>
-        </tr>
-        <% } %>
-    </>
+    <fieldset style="width:250px">
+    <table width="400" border="1" cellpadding="4" cellspacing="0">
+        <legend><b>List of users</b></legend>
+            <tr>
+                <th> id </th><th> name </th><th> login </th><th> options </th>
+            </tr>
+            <% for (User user: users) { %>
+            <% long id = user.getId(); %>
+            <tr>
+                <th> <%= id %></th>
+                <th> <%= user.getName() %></th>
+                <th> <%= user.getLogin() %></th>
+                <th>
+                    <a href="/edit">edit</a>
+                    <a href="/delete">delete</a>
+                </th>
+            </tr>
+            <% } %>
+    </table>
+    </fieldset>
+
+    <p><hr></p>
+    <%@ include file="addUser.jsp" %>
+
 
 </body>
 </html>

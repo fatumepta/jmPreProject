@@ -18,10 +18,15 @@ public class UserService {
     public List<User> getAllUsers() {
         return getUserDao().getAll();
     }
-    // REFACTOR THIS!
-    // CHECK IF USER IN DB!
-    public void addUser(User user) {
-        getUserDao().add(user);
+
+    public boolean addUser(String name, String login, String password) {
+        UserDao dao = getUserDao();
+        if (dao.getAll().stream().anyMatch(user -> user.getLogin().equals(login))) {
+            return false;
+        } else {
+            dao.add(new User(name, login, password));
+            return true;
+        }
     }
 
     public void createTable() {

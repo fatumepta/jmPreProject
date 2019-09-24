@@ -16,7 +16,23 @@ public class UserDao implements Dao<User> {
 
     @Override
     public Optional<User> get(long id) {
-        return Optional.empty();
+        Optional<User> user = Optional.empty();
+
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT  * WHERE id=?")) {
+            stmt.setLong(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                user = Optional.of(
+                        new User(result.getLong("id"),
+                                result.getString("name"),
+                                result.getString("login"),
+                                result.getString("password")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 
     @Override
@@ -46,7 +62,8 @@ public class UserDao implements Dao<User> {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getLogin());
             stmt.setString(3, user.getPassword());
-            stmt.executeQuery();
+
+            stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,6 +77,8 @@ public class UserDao implements Dao<User> {
             stmt.setString(2, params[1]);   // login
             stmt.setString(3, params[2]);   // password
             stmt.setLong(4, user.getId());
+
+            stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,6 +88,8 @@ public class UserDao implements Dao<User> {
     public void delete(User user) {
         try (PreparedStatement stmt = connection.prepareStatement("DELETE FROM users WHERE id=?")) {
             stmt.setLong(1, user.getId());
+
+            stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
