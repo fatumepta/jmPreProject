@@ -11,8 +11,10 @@ import java.io.IOException;
 
 @WebServlet(name = "DropTableServlet", urlPatterns = "/drop")
 public class DropTableServlet extends HttpServlet {
-    UserService service = UserService.getInstance();
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private UserService service = UserService.getInstance();
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        service.dropTable();
+        response.setStatus(200);
     }
 }

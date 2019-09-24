@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "EditServlet", urlPatterns = "/edit")
 public class EditServlet extends HttpServlet {
-    UserService service = UserService.getInstance();
+    private UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.getWriter().println("EDIT!");

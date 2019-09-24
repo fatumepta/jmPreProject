@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "ShowUsersServlet", urlPatterns = "/users")
 public class ShowUsersServlet extends HttpServlet {
-    UserService service = UserService.getInstance();
+    private UserService service = UserService.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
