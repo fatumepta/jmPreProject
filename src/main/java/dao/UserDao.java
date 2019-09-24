@@ -72,7 +72,7 @@ public class UserDao implements Dao<User> {
     @Override
     public void update(User user, String[] params) {
         try (PreparedStatement stmt = connection.prepareStatement(
-                "UPDATE users SET name=? login=? password=? WHERE id=?")) {
+                "UPDATE users SET name=?, login=?, password=? WHERE id=?")) {
             stmt.setString(1, params[0]);   // name
             stmt.setString(2, params[1]);   // login
             stmt.setString(3, params[2]);   // password

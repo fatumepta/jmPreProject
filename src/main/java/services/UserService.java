@@ -33,9 +33,19 @@ public class UserService {
         }
     }
 
+    public void editUser(User user, String[] params) {
+        getUserDao().update(user, params);
+    }
+
     public void deleteUser(long id) {
         UserDao dao = getUserDao();
         dao.get(id).ifPresent(dao::delete);
+    }
+
+    // I DON'T LIKE IT!
+    public User getUser(long id) {
+        UserDao dao = getUserDao();
+        return dao.get(id).orElse(new User());
     }
 
     public void createTable() {
