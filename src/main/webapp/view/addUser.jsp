@@ -10,12 +10,12 @@
 
     <form action="/add" method="post">
         <fieldset style="width:250px" >
-            <legend><b>Sign Up</b></legend>
-            <p><label>name</label>
+            <legend><b> Sign Up </b></legend>
+            <p><label> name </label>
                 <input type="text" name="name"></p>
-            <p><label>login</label>
+            <p><label> login </label>
                 <input type="text" name="login"></p>
-            <p><label>password</label>
+            <p><label> password </label>
                 <input type="password" name="password"></p>
             <p><button type="submit">send</button></p>
         </fieldset>
