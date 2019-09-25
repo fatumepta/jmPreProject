@@ -3,14 +3,13 @@
 <head>
     <title>Add User</title>
     <style>
-        fieldset {
-            width: 300px;
-            border: 1px;
-            margin: auto;   /* Выравниваем таблицу по центру окна  */
-        }
-        legend {
-            border: 5px;
+        form {
+            width: 13%;
             margin: auto;
+            border: 5px;
+        }
+        input {
+            float: right;
         }
     </style>
 </head>
@@ -18,18 +17,15 @@
 
     <%@ include file="navi.jsp" %>
 
-    <form action="/add" method="post">
-        <fieldset style="width: 250px" >
-            <legend><b> Sign Up </b></legend>
-            <p><label> name </label>
-                <input type="text" name="name"></p>
-            <p><label> login </label>
-                <input type="text" name="login"></p>
-            <p><label> password </label>
-                <input type="password" name="password"></p>
-            <p><button type="submit">send</button></p>
-        </fieldset>
-    </form>
+        <form action="/add" method="post">
+            <fieldset>
+                <legend><h2><b>Add user</b></h2></legend>
+                name <input type="text" name="name">
+                <p>login <input type="text" name="login"required></p>
+                <p>password <input type="password" name="password"></p>
+                <p><button style="height:30px;width:220px"><b>add</b></button></p>
+            </fieldset>
+        </form>
 
 </body>
 </html>

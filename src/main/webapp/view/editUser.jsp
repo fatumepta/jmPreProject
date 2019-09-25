@@ -1,24 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit User</title>
+    <title>Add User</title>
+    <style>
+        form {
+            width: 13%;
+            margin: auto;
+            border: 5px;
+        }
+        input {
+            float: right;
+        }
+    </style>
 </head>
 <body>
 
-    <%@ include file="navi.jsp"%>
+<%@ include file="navi.jsp" %>
 
-    <form action="/edit" method="post" >
-        <fieldset style="width:250px" >
-            <legend><b> Edit </b></legend>
-            <p><label> name </label>
-                <input type="text" name="name" value=<%= request.getAttribute("name") %>></p>
-            <p><label>login</label>
-                <input type="text" name="login" value=<%= request.getAttribute("login") %>></p>
-            <p><label>password</label>
-                <input type="password" name="password" value=<%= request.getAttribute("name") %>></p>
-            <p><button type="submit">send</button></p>
-        </fieldset>
-    </form>
+<form action="/add" method="post">
+    <fieldset>
+        <legend><h2><b>Add user</b></h2></legend>
+        name <input type="text" name="name" value=<%= request.getAttribute("name")%>>
+        <p>login <input type="text" name="login" required value=<%= request.getAttribute("login")%>></p>
+        <p>password <input type="password" name="password" value=<%= request.getAttribute("password")%>></p>
+        <p><button style="height:30px;width:220px"><b>edit</b></button></p>
+    </fieldset>
+</form>
 
 </body>
 </html>
