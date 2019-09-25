@@ -17,6 +17,10 @@
 
     <%@ include file="navi.jsp" %>
 
+    <% if (request.getAttribute("message") != null) { %>
+        <h2 style="color: crimson" align="middle"><p><%= request.getAttribute("message") %></p></h2>
+    <% } %>
+
         <form action="/add" method="post">
             <fieldset>
                 <legend><h2><b>Add user</b></h2></legend>

@@ -24,7 +24,7 @@
     <fieldset>
         <table width="400" border="1" cellpadding="4" cellspacing="0" ma>
             <legend><h1><b>List of users</b></h1></legend>
-                <tr>
+                <tr bgcolor="#a9a9a9">
                     <th> id </th><th> name </th><th> login </th><th> options </th>
                 </tr>
                 <% for (User user: users) { %>

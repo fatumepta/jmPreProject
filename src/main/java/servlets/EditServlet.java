@@ -16,6 +16,7 @@ public class EditServlet extends HttpServlet {
     private User userToBeEdited;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setStatus(200);
         userToBeEdited = service.getUser(Long.parseLong(request.getParameter("id")));
         request.setAttribute("name", userToBeEdited.getName());
         request.setAttribute("login", userToBeEdited.getLogin());
@@ -25,6 +26,7 @@ public class EditServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setStatus(200);
         service.editUser(userToBeEdited, new String[]{
                 request.getParameter("name"),
                 request.getParameter("login"),

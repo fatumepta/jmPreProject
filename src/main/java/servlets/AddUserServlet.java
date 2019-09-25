@@ -15,17 +15,19 @@ public class AddUserServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setStatus(200);
+
         String login = request.getParameter("login");
         if (service.addUser(request.getParameter("name"), login, request.getParameter("password"))) {
-            request.setAttribute("message", login + " registered successfully!");
+            response.sendRedirect("/users");
         } else {
             request.setAttribute("message", "user with login [" + login +  "] already exists!");
+            doGet(request, response);
         }
-
-        response.sendRedirect("/users");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setStatus(200);
         request.getRequestDispatcher("view/addUser.jsp").forward(request, response);
     }
 }

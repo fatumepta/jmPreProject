@@ -14,8 +14,8 @@ public class DropTableServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setStatus(200);
         service.dropTable();
         response.sendRedirect("index.jsp");
-        response.setStatus(200);
     }
 }
