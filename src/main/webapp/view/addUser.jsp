@@ -23,7 +23,7 @@
 
         <form action="/add" method="post">
             <fieldset>
-                <legend><h2><b>Add user</b></h2></legend>
+                <legend><h2><b>ADD</b></h2></legend>
                 name <input type="text" name="name">
                 <p>login <input type="text" name="login"required></p>
                 <p>password <input type="password" name="password"></p>

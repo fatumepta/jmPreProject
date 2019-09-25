@@ -5,6 +5,7 @@
 <head>
     <title>List of users</title>
     <style>
+
         fieldset {
             width: 300px;
             border: 1px;
@@ -14,6 +15,7 @@
             border: 5px;
             margin: auto;
         }
+
     </style>
 </head>
 <body>

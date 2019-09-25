@@ -17,9 +17,9 @@
 
 <%@ include file="navi.jsp" %>
 
-<form action="/add" method="post">
+<form action="/edit" method="post">
     <fieldset>
-        <legend><h2><b>Add user</b></h2></legend>
+        <legend><h2><b>EDIT</b></h2></legend>
         name <input type="text" name="name" value=<%= request.getAttribute("name")%>>
         <p>login <input type="text" name="login" required value=<%= request.getAttribute("login")%>></p>
         <p>password <input type="password" name="password" value=<%= request.getAttribute("password")%>></p>
