@@ -4,6 +4,9 @@
     <title>Edit User</title>
 </head>
 <body>
+
+    <%@ include file="navi.jsp"%>
+
     <form action="/edit" method="post" >
         <fieldset style="width:250px" >
             <legend><b> Edit </b></legend>

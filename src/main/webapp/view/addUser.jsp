@@ -2,8 +2,21 @@
 <html>
 <head>
     <title>Add User</title>
+    <style>
+        fieldset {
+            width: 300px;
+            border: 1px;
+            margin: auto;   /* Выравниваем таблицу по центру окна  */
+        }
+        legend {
+            border: 5px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
+
+    <%@ include file="navi.jsp" %>
 
     <form action="/add" method="post">
         <fieldset style="width: 250px" >

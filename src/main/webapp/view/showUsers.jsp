@@ -4,13 +4,26 @@
 <html>
 <head>
     <title>List of users</title>
+    <style>
+        fieldset {
+            width: 300px;
+            border: 1px;
+            margin: auto;   /* Выравниваем таблицу по центру окна  */
+        }
+        legend {
+            border: 5px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 
+    <%@ include file="navi.jsp" %>
+
     <% List<User> users = (List<User>) request.getAttribute("users"); %>
-    <fieldset style="width:250px">
-        <table width="400" border="1" cellpadding="4" cellspacing="0">
-            <legend><b>List of users</b></legend>
+    <fieldset>
+        <table width="400" border="1" cellpadding="4" cellspacing="0" ma>
+            <legend><h1><b>List of users</b></h1></legend>
                 <tr>
                     <th> id </th><th> name </th><th> login </th><th> options </th>
                 </tr>
@@ -28,13 +41,6 @@
                 <% } %>
         </table>
     </fieldset>
-
-    <p><hr></p>
-    <%@ include file="addUser.jsp" %>
-    <p><hr></p>
-    <%@ include file="/index.jsp" %>
-
-
 
 </body>
 </html>
