@@ -32,7 +32,8 @@
     <p><hr></p>
     <%@ include file="addUser.jsp" %>
     <p><hr></p>
-    <%@include file="/index.jsp" %>
+    <%@ include file="/index.jsp" %>
+
 
 
 </body>
