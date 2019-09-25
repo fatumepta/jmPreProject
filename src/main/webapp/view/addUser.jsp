@@ -4,9 +4,6 @@
     <title>Add User</title>
 </head>
 <body>
-    <% if (request.getAttribute("message") != null) { %>
-        <h3></h3><p><%= request.getAttribute("message") %></p></h3>
-    <% } %>
 
     <form action="/add" method="post">
         <fieldset style="width:250px" >
