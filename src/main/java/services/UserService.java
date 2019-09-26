@@ -2,14 +2,14 @@ package services;
 
 import dao.UserDao;
 import models.User;
-import util.DBConnection;
+import util.JDBCConnection;
 
 import java.sql.Connection;
 import java.util.List;
 
 
 public class UserService {
-    private static Connection connection = DBConnection.getConnection();
+    private static Connection connection = JDBCConnection.getConnection();
     private static UserService instance;
 
     private UserService() {
