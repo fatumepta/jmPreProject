@@ -1,22 +1,50 @@
 package services;
 
+import dao.Dao;
 import dao.UserDao;
+import dao.UserDaoHibernate;
 import models.User;
-import util.JDBCConnection;
+import org.hibernate.SessionFactory;
+import util.HibernateHelper;
+import util.JDBCHelper;
 
 import java.sql.Connection;
 import java.util.List;
 
 
 public class UserService {
-    private static Connection connection = JDBCConnection.getConnection();
-    private static UserService instance;
+    private Connection connection;
+    private SessionFactory sessionFactory;
+    private static UserService userService;
 
-    private UserService() {
+//    // JDBC
+//    private UserService(Connection connection) {
+//        this.connection = connection;
+//    }
+//
+//    // JDBC
+//    public static UserService getInstance() {
+//        return userService == null ? userService = new UserService(JDBCHelper.getConnection()) : userService;
+//    }
+//
+//    // JDBC
+//    private static UserDao getUserDao() {
+//        return new UserDao(userService.connection);
+//    }
+
+    // Hibernate
+    private UserService(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    private static UserDao getUserDao() {
-        return new UserDao(connection);
+    // Hibernate
+    public static UserService getInstance() {
+        return userService == null ? userService = new UserService(HibernateHelper.getSessionFactory()) : userService;
+    }
+
+    // Hibernate
+    private static UserDaoHibernate getUserDao() {
+        return new UserDaoHibernate(userService.sessionFactory.openSession());
     }
 
     public List<User> getAllUsers() {
@@ -24,7 +52,7 @@ public class UserService {
     }
 
     public boolean addUser(String name, String login, String password) {
-        UserDao dao = getUserDao();
+        Dao<User> dao = getUserDao();
         if (dao.getAll().stream().anyMatch(user -> user.getLogin().equals(login))) {
             return false;
         } else {
@@ -38,13 +66,12 @@ public class UserService {
     }
 
     public void deleteUser(long id) {
-        UserDao dao = getUserDao();
+        Dao<User> dao = getUserDao();
         dao.get(id).ifPresent(dao::delete);
     }
 
-    // I DON'T LIKE IT!
     public User getUser(long id) {
-        UserDao dao = getUserDao();
+        Dao<User> dao = getUserDao();
         return dao.get(id).orElse(new User());
     }
 
@@ -55,9 +82,4 @@ public class UserService {
     public void dropTable() {
         getUserDao().dropTable();
     }
-
-    public static UserService getInstance() {
-        return instance == null ? instance = new UserService() : instance;
-    }
-
 }
