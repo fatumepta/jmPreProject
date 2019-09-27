@@ -8,7 +8,7 @@ public class HibernateHelper {
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
-        return sessionFactory == null ? sessionFactory = getSessionFactory() : sessionFactory;
+        return sessionFactory == null ? sessionFactory = createSessionFactory() : sessionFactory;
     }
 
     private static SessionFactory createSessionFactory() {

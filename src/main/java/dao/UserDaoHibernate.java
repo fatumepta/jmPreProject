@@ -2,6 +2,7 @@ package dao;
 
 import models.User;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,11 @@ public class UserDaoHibernate implements Dao<User> {
 
     @Override
     public List<User> getAll() {
-        return null;
+        try {
+            return (List<User>) session.createQuery("from User").list();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
