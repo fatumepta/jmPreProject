@@ -1,12 +1,10 @@
 package services;
 
 import dao.Dao;
-import dao.UserDao;
-import dao.UserDaoHibernate;
+import dao.UserDaoHibernateImpl;
 import models.User;
 import org.hibernate.SessionFactory;
 import util.HibernateHelper;
-import util.JDBCHelper;
 
 import java.sql.Connection;
 import java.util.List;
@@ -43,8 +41,8 @@ public class UserService {
     }
 
     // Hibernate
-    private static UserDaoHibernate getUserDao() {
-        return new UserDaoHibernate(userService.sessionFactory.openSession());
+    private static UserDaoHibernateImpl getUserDao() {
+        return new UserDaoHibernateImpl(userService.sessionFactory.openSession());
     }
 
     public List<User> getAllUsers() {

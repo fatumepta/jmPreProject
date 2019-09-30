@@ -7,10 +7,10 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDaoHibernate implements Dao<User> {
+public class UserDaoHibernateImpl implements Dao<User> {
     private Session session;
 
-    public UserDaoHibernate(Session session) {
+    public UserDaoHibernateImpl(Session session) {
         this.session = session;
     }
 

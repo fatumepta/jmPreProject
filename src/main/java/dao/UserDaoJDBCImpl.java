@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDao implements Dao<User> {
+public class UserDaoJDBCImpl implements Dao<User> {
     private Connection connection;
 
-    public UserDao(Connection connection) {
+    public UserDaoJDBCImpl(Connection connection) {
         this.connection = connection;
     }
 
