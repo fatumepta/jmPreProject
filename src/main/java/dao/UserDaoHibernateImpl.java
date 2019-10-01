@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.Optional;
 
+
 public class UserDaoHibernateImpl implements Dao<User> {
     private Session session;
 
@@ -21,7 +22,6 @@ public class UserDaoHibernateImpl implements Dao<User> {
 
         transaction.commit();
         return user;
-
     }
 
     @Override
@@ -67,7 +67,6 @@ public class UserDaoHibernateImpl implements Dao<User> {
     public void createTable() {
         // hbm2ddl -> create
     }
-
 
     @Override
     public void dropTable() {

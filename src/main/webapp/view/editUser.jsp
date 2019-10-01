@@ -20,9 +20,9 @@
 <form action="/edit" method="post">
     <fieldset>
         <legend><h2><b>EDIT</b></h2></legend>
-        name <input type="text" name="name" value=<%= request.getAttribute("name")%>>
-        <p>login <input type="text" name="login" required value=<%= request.getAttribute("login")%>></p>
-        <p>password <input type="password" name="password" value=<%= request.getAttribute("password")%>></p>
+        name <input type="text" name="name" value=<%= request.getAttribute("name") %>>
+        <p>login <input type="text" name="login" required value=<%= request.getAttribute("login") %>></p>
+        <p>password <input type="password" name="password" value=<%= request.getAttribute("password") %>></p>
         <p><button style="height:30px;width:220px"><b>edit</b></button></p>
     </fieldset>
 </form>

@@ -5,6 +5,7 @@ import util.TableUtility;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface Dao<T> extends TableUtility {
     Optional<T> get(long id);
 

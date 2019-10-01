@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @WebServlet(name = "DropTableServlet", urlPatterns = "/drop")
 public class DropTableServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
