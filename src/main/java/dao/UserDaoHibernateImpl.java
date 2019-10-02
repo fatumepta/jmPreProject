@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class UserDaoHibernateImpl implements Dao<User> {
+public class UserDaoHibernateImpl implements UserDao {
     private Session session;
 
     public UserDaoHibernateImpl(Session session) {

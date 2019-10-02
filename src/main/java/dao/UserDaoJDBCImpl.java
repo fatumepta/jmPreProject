@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class UserDaoJDBCImpl implements Dao<User> {
+public class UserDaoJDBCImpl implements UserDao {
     private Connection connection;
 
     public UserDaoJDBCImpl(Connection connection) {

@@ -1,5 +1,7 @@
-package dao;
+package util;
 
+
+import dao.Dao;
 
 // abstract factory that returns Dao realization based property-file
 public class UserDaoFactory {

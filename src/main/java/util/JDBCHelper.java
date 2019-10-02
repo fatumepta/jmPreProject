@@ -1,22 +1,33 @@
 package util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 
 public class JDBCHelper {
-    private static final String JDBC_DRIVER = "org.postgresql.Driver";
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/preproject";
-    private static final String USER = "fatumepta";
-    private static final String PASSWORD = "qwerty";
+    private static Connection connection;
 
     public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
+        return connection == null ? connection = createConnection() : connection;
+    }
+
+    private static Connection createConnection() {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        Properties properties = new Properties();
+
+        try (InputStream fis = loader.getResourceAsStream("jdbc.properties")) {
+            properties.load(fis);
+
+            Class.forName(properties.getProperty("db.driver.class"));
+            connection = DriverManager.getConnection(
+                    properties.getProperty("db.conn.url"),
+                    properties.getProperty("db.username"),
+                    properties.getProperty("db.password"));
+        } catch (IOException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 
