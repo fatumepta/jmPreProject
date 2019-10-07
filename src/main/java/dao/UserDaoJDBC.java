@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class UserDaoJDBCImpl implements UserDao {
+public class UserDaoJDBC implements UserDao {
     private Connection connection;
 
-    public UserDaoJDBCImpl(Connection connection) {
+    public UserDaoJDBC(Connection connection) {
         this.connection = connection;
     }
 

@@ -1,59 +1,47 @@
 package services;
 
-import dao.Dao;
 import dao.UserDao;
-import dao.UserDaoHibernateImpl;
-import dao.UserDaoJDBCImpl;
 import models.User;
-import org.hibernate.SessionFactory;
-import util.HibernateHelper;
-import util.JDBCHelper;
+import util.UserDaoFactory;
 
-import java.sql.Connection;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 
 public class UserService {
-    private Connection connection;
-    private SessionFactory sessionFactory;
     private static UserService userService;
+    private static final Properties properties;
 
-    // JDBC
-    private UserService(Connection connection) {
-        this.connection = connection;
+    private UserDao dao;
+
+    static {
+        properties = new Properties();
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+
+        try (InputStream fis = loader.getResourceAsStream("dao.properties")) {
+            properties.load(fis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    // JDBC
+    private UserService(UserDao dao) {
+        this.dao = dao;
+    }
+
     public static UserService getInstance() {
-        return userService == null ? userService = new UserService(JDBCHelper.getConnection()) : userService;
+        return userService == null
+                ? userService = new UserService(UserDaoFactory.getDao(properties))
+                : userService;
     }
-
-    // JDBC
-    private static UserDao getUserDao() {
-        return new UserDaoJDBCImpl(userService.connection);
-    }
-
-//    // Hibernate
-//    private UserService(SessionFactory sessionFactory) {
-//        this.sessionFactory = sessionFactory;
-//    }
-//
-//    // Hibernate
-//    public static UserService getInstance() {
-//        return userService == null ? userService = new UserService(HibernateHelper.getSessionFactory()) : userService;
-//    }
-//
-//    // Hibernate
-//    private static UserDaoHibernateImpl getUserDao() {
-//        return new UserDaoHibernateImpl(userService.sessionFactory.openSession());
-//    }
 
     public List<User> getAllUsers() {
-        return getUserDao().getAll();
+        return dao.getAll();
     }
 
     public boolean addUser(String name, String login, String password) {
-        Dao<User> dao = getUserDao();
         if (dao.getAll().stream().anyMatch(user -> user.getLogin().equals(login))) {
             return false;
         } else {
@@ -63,24 +51,22 @@ public class UserService {
     }
 
     public void editUser(User user, String[] params) {
-        getUserDao().update(user, params);
+        dao.update(user, params);
     }
 
     public void deleteUser(long id) {
-        Dao<User> dao = getUserDao();
         dao.get(id).ifPresent(dao::delete);
     }
 
     public User getUser(long id) {
-        Dao<User> dao = getUserDao();
         return dao.get(id).orElse(new User());
     }
 
     public void createTable() {
-        getUserDao().createTable();
+        dao.createTable();
     }
 
     public void dropTable() {
-        getUserDao().dropTable();
+        dao.dropTable();
     }
 }

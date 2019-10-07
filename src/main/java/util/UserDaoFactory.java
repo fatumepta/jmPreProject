@@ -1,12 +1,24 @@
 package util;
 
+import dao.UserDao;
+import dao.UserDaoHibernate;
+import dao.UserDaoJDBC;
+import util.DBHelper;
 
-import dao.Dao;
+import java.util.Properties;
 
-// abstract factory that returns Dao realization based property-file
 public class UserDaoFactory {
+    private static UserDao dao;
 
-    public static Dao getDao() {
-        return null;
+    public static UserDao getDao(Properties properties) {
+        String property = properties.getProperty("user.dao");
+
+        if (property.equalsIgnoreCase("hibernate")) {
+            dao = new UserDaoHibernate(DBHelper.getSessionFactory().openSession());
+        } else if (property.equalsIgnoreCase("jdbc")) {
+            dao = new UserDaoJDBC(DBHelper.getConnection());
+        }
+
+        return dao;
     }
 }

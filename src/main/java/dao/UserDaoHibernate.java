@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class UserDaoHibernateImpl implements UserDao {
+public class UserDaoHibernate implements UserDao {
     private Session session;
 
-    public UserDaoHibernateImpl(Session session) {
+    public UserDaoHibernate(Session session) {
         this.session = session;
     }
 
