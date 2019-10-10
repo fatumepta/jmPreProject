@@ -4,68 +4,64 @@ import dao.UserDao;
 import models.User;
 import util.UserDaoFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 
-
-public class UserService {
+// properties moved to the UserDaoFactory
+// interface Service implemented
+// add method now requests ONLY ONE user to check if it already exists (all users were requested before)
+public class UserService implements Service<User> {
     private static UserService userService;
-    private static final Properties properties;
-
     private UserDao dao;
-
-    static {
-        properties = new Properties();
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-
-        try (InputStream fis = loader.getResourceAsStream("dao.properties")) {
-            properties.load(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private UserService(UserDao dao) {
         this.dao = dao;
     }
 
     public static UserService getInstance() {
-        return userService == null
-                ? userService = new UserService(UserDaoFactory.getDao(properties))
-                : userService;
+        return userService == null ? userService = new UserService(UserDaoFactory.getDao()) : userService;
     }
 
-    public List<User> getAllUsers() {
+    @Override
+    public List<User> getAll() {
         return dao.getAll();
     }
 
-    public boolean addUser(String name, String login, String password) {
-        if (dao.getAll().stream().anyMatch(user -> user.getLogin().equals(login))) {
+    @Override
+    public boolean add(User user) {
+        if (getId(user) > 0) {
             return false;
         } else {
-            dao.add(new User(name, login, password));
+            dao.add(user);
             return true;
         }
     }
 
-    public void editUser(User user, String[] params) {
+    @Override
+    public long getId(User user) {
+        return dao.getId(user); // -1 if the user doesn't exist
+    }
+
+    @Override
+    public void edit(User user, String[] params) {
         dao.update(user, params);
     }
 
-    public void deleteUser(long id) {
-        dao.get(id).ifPresent(dao::delete);
+    @Override
+    public void delete(long id) {
+        dao.delete(get(id));
     }
 
-    public User getUser(long id) {
+    @Override
+    public User get(long id) {
         return dao.get(id).orElse(new User());
     }
 
+    @Override
     public void createTable() {
         dao.createTable();
     }
 
+    @Override
     public void dropTable() {
         dao.dropTable();
     }

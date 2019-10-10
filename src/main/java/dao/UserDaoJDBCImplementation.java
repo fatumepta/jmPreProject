@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class UserDaoJDBC implements UserDao {
+public class UserDaoJDBCImplementation implements UserDao {
     private Connection connection;
 
-    public UserDaoJDBC(Connection connection) {
+    public UserDaoJDBCImplementation(Connection connection) {
         this.connection = connection;
     }
 
@@ -34,6 +34,20 @@ public class UserDaoJDBC implements UserDao {
         }
 
         return users;
+    }
+
+    @Override
+    public long getId(User user) {
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT id AS id FROM users WHERE login=?")) {
+            stmt.setString(1, user.getLogin());
+            ResultSet result = stmt.executeQuery();
+            result.next();
+            return result.getLong("id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
 
     @Override

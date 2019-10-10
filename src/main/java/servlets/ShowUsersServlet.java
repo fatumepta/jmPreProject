@@ -16,7 +16,7 @@ public class ShowUsersServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setStatus(200);
-        request.setAttribute("users", service.getAllUsers());
+        request.setAttribute("users", service.getAll());
         request.getRequestDispatcher("view/showUsers.jsp").forward(request, response);
     }
 }

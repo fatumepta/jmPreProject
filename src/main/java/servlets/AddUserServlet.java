@@ -1,5 +1,6 @@
 package servlets;
 
+import models.User;
 import services.UserService;
 
 import javax.servlet.ServletException;
@@ -18,10 +19,10 @@ public class AddUserServlet extends HttpServlet {
         response.setStatus(200);
 
         String login = request.getParameter("login");
-        if (service.addUser(request.getParameter("name"), login, request.getParameter("password"))) {
+        if (service.add(new User(request.getParameter("name"), login, request.getParameter("password")))) {
             response.sendRedirect("/users");
         } else {
-            request.setAttribute("message", "user with login [" + login +  "] already exists!");
+            request.setAttribute("message", "user with login [" + login + "] already exists!");
             doGet(request, response);
         }
     }

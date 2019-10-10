@@ -11,16 +11,16 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public class DBHelper {
+class DBHelper {
     private static Connection connection;
     private static SessionFactory sessionFactory;
 
 
-    public static Connection getConnection() {
+    static Connection getConnection() {
         return connection == null ? connection = createConnection() : connection;
     }
 
-    public static SessionFactory getSessionFactory() {
+    static SessionFactory getSessionFactory() {
         return sessionFactory == null ? sessionFactory = createSessionFactory() : sessionFactory;
     }
 
