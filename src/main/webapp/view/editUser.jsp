@@ -23,6 +23,7 @@
         name <input type="text" name="name" value=<%= request.getAttribute("name") %>>
         <p>login <input type="text" name="login" required value=<%= request.getAttribute("login") %>></p>
         <p>password <input type="password" name="password" value=<%= request.getAttribute("password") %>></p>
+        <p>role <input type="text" name="role" value=<%= request.getAttribute("role") %>></p>
         <p><button style="height:30px;width:220px"><b>edit</b></button></p>
     </fieldset>
 </form>

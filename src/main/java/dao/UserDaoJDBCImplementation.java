@@ -27,7 +27,8 @@ public class UserDaoJDBCImplementation implements UserDao {
                         new User(result.getLong("id"),
                                 result.getString("name"),
                                 result.getString("login"),
-                                result.getString("password")));
+                                result.getString("password"),
+                                result.getString("role")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class UserDaoJDBCImplementation implements UserDao {
 
     @Override
     public long getId(User user) {
-        try (PreparedStatement stmt = connection.prepareStatement("SELECT id AS id FROM users WHERE login=?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT id FROM users WHERE login=?")) {
             stmt.setString(1, user.getLogin());
             ResultSet result = stmt.executeQuery();
             result.next();
@@ -61,7 +62,8 @@ public class UserDaoJDBCImplementation implements UserDao {
                         result.getLong("id"),
                         result.getString("name"),
                         result.getString("login"),
-                        result.getString("password")));
+                        result.getString("password"),
+                        result.getString("role")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -73,10 +75,11 @@ public class UserDaoJDBCImplementation implements UserDao {
     @Override
     public void add(User users) {
         try (PreparedStatement stmt =
-                     connection.prepareStatement("INSERT INTO users (name, login, password) VALUES (?, ?, ?)")) {
+                     connection.prepareStatement("INSERT INTO users (name, login, password, role) VALUES (?, ?, ?, ?)")) {
             stmt.setString(1, users.getName());
             stmt.setString(2, users.getLogin());
             stmt.setString(3, users.getPassword());
+            stmt.setString(4, users.getRole());
 
             stmt.execute();
         } catch (SQLException e) {
@@ -87,11 +90,12 @@ public class UserDaoJDBCImplementation implements UserDao {
     @Override
     public void update(User users, String[] params) {
         try (PreparedStatement stmt = connection.prepareStatement(
-                "UPDATE users SET name=?, login=?, password=? WHERE id=?")) {
+                "UPDATE users SET name=?, login=?, password=?, role=? WHERE id=?")) {
             stmt.setString(1, params[0]);   // name
             stmt.setString(2, params[1]);   // login
             stmt.setString(3, params[2]);   // password
-            stmt.setLong(4, users.getId());
+            stmt.setString(4, params[3]);   // role
+            stmt.setLong(5, users.getId());
 
             stmt.execute();
         } catch (SQLException e) {
@@ -117,7 +121,8 @@ public class UserDaoJDBCImplementation implements UserDao {
                     "id BIGSERIAL PRIMARY KEY," +
                     "name VARCHAR(50) NOT NULL, " +
                     "login VARCHAR(50) UNIQUE NOT NULL, " +
-                    "password VARCHAR(50) NOT NULL)");
+                    "password VARCHAR(50) NOT NULL," +
+                    "role VARCHAR(5) NOT NULL)");
         } catch (SQLException e) {
             e.printStackTrace();
         }

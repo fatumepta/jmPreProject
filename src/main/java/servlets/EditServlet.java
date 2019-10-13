@@ -22,6 +22,8 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("name", userToBeEdited.getName());
         request.setAttribute("login", userToBeEdited.getLogin());
         request.setAttribute("password", userToBeEdited.getPassword());
+        request.setAttribute("role", userToBeEdited.getRole());
+
         request.getRequestDispatcher("view/editUser.jsp").forward(request, response);
     }
 
@@ -31,7 +33,9 @@ public class EditServlet extends HttpServlet {
         service.edit(userToBeEdited, new String[]{
                 request.getParameter("name"),
                 request.getParameter("login"),
-                request.getParameter("password")});
+                request.getParameter("password"),
+                request.getParameter("role")});
+
         response.sendRedirect("/users");
     }
 }

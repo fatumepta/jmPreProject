@@ -19,7 +19,12 @@ public class AddUserServlet extends HttpServlet {
         response.setStatus(200);
 
         String login = request.getParameter("login");
-        if (service.add(new User(request.getParameter("name"), login, request.getParameter("password")))) {
+        if (service.add(
+                new User(
+                        request.getParameter("name"),
+                        login,
+                        request.getParameter("password"),
+                        request.getParameter("role")))) {
             response.sendRedirect("/users");
         } else {
             request.setAttribute("message", "user with login [" + login + "] already exists!");

@@ -24,9 +24,10 @@
         <form action="/add" method="post">
             <fieldset>
                 <legend><h2><b>ADD</b></h2></legend>
-                name <input type="text" name="name">
+                name <input type="text" name="name" required>
                 <p>login <input type="text" name="login" required></p>
                 <p>password <input type="password" name="password" required></p>
+                <p>role <input type="text" name="role" required></p>
                 <p><button style="height:30px;width:220px"><b>add</b></button></p>
             </fieldset>
         </form>

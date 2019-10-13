@@ -54,10 +54,11 @@ public class UserDaoHibernateImplementation implements UserDao {
     @Override
     public void update(User user, String[] params) {
         Transaction transaction = session.beginTransaction();
-        session.createQuery("UPDATE User SET name=:name, login=:login, password=:password WHERE id=:id")
+        session.createQuery("UPDATE User SET name=:name, login=:login, password=:password, role=:role WHERE id=:id")
                 .setParameter("name", params[0])
                 .setParameter("login", params[1])
                 .setParameter("password", params[2])
+                .setParameter("role", params[3])
                 .setParameter("id", user.getId())
                 .executeUpdate();
 

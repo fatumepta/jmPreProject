@@ -6,8 +6,8 @@
         <property name="connection.password">qwerty</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
 
-        <property name="hibernate.hbm2ddl.auto">validate</property>
-<!--        <property name="hibernate.hbm2ddl.auto">create</property>-->
+        <!--        <property name="hibernate.hbm2ddl.auto">validate</property>-->
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
         <mapping class="models.User"/>
     </session-factory>

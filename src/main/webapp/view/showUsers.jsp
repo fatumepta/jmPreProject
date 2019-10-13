@@ -27,7 +27,11 @@
         <table width="400" border="1" cellpadding="4" cellspacing="0" ma>
             <legend><h1><b>List of users</b></h1></legend>
                 <tr bgcolor="#a9a9a9">
-                    <th> id </th><th> name </th><th> login </th><th> options </th>
+                    <th> id</th>
+                    <th> name</th>
+                    <th> login</th>
+                    <th> role</th>
+                    <th> options</th>
                 </tr>
                 <% for (User user: users) { %>
                 <% long id = user.getId(); %>
@@ -35,6 +39,8 @@
                     <th> <%= id %> </th>
                     <th> <%= user.getName() %> </th>
                     <th> <%= user.getLogin() %> </th>
+                    <th><%= user.getRole() %>
+                    </th>
                     <th>
                         <a href=<%= "/edit?id=" + id %>> edit </a>
                         <a href=<%= "delete?id=" + id %>> delete </a>
