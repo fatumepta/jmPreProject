@@ -53,7 +53,7 @@ public class UserService implements Service<User> {
 
     @Override
     public User get(long id) {
-        return dao.get(id).orElse(new User());
+        return dao.get(id);
     }
 
     @Override

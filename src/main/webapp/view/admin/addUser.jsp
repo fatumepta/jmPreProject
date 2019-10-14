@@ -11,6 +11,7 @@
         input {
             float: right;
         }
+
     </style>
 </head>
 <body>
@@ -27,7 +28,13 @@
                 name <input type="text" name="name" required>
                 <p>login <input type="text" name="login" required></p>
                 <p>password <input type="password" name="password" required></p>
-                <p>role <input type="text" name="role" required></p>
+                <p>
+                    role:
+                    <select name="role" required>
+                        <option selected value="user"> user</option>
+                        <option value="admin"> admin</option>
+                    </select>
+                </p>
                 <p><button style="height:30px;width:220px"><b>add</b></button></p>
             </fieldset>
         </form>

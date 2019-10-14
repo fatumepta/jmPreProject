@@ -11,29 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "AddUserServlet", urlPatterns = "/add")
-public class AddUserServlet extends HttpServlet {
+@WebServlet(name = "LogInServlet", urlPatterns = "/login")
+public class LogInServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setStatus(200);
-
         String login = request.getParameter("login");
-        if (service.add(
-                new User(
-                        request.getParameter("name"),
-                        login,
-                        request.getParameter("password"),
-                        request.getParameter("role")))) {
-            response.sendRedirect("/users");
+        String password = request.getParameter("password");
+        long userId = service.getId(new User(login, password));
+
+        if (userId != -1) {
+            request.getSession().setAttribute("user", service.get(userId));
+            response.sendRedirect("/user");
         } else {
-            request.setAttribute("message", "user with login [" + login + "] already exists!");
-            doGet(request, response);
+            request.setAttribute("message", "No such combination of login and password");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setStatus(200);
-        request.getRequestDispatcher("view/admin/addUser.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

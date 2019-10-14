@@ -5,7 +5,6 @@ import models.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 public class UserDaoJDBCImplementation implements UserDao {
@@ -16,34 +15,35 @@ public class UserDaoJDBCImplementation implements UserDao {
     }
 
     @Override
-    public Optional<User> get(long id) {
-        Optional<User> users = Optional.empty();
+    public User get(long id) {
+        User user = new User();
 
         try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE id=?")) {
             stmt.setLong(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                users = Optional.of(
-                        new User(result.getLong("id"),
-                                result.getString("name"),
-                                result.getString("login"),
-                                result.getString("password"),
-                                result.getString("role")));
+                user.setId(result.getLong("id"));
+                user.setName(result.getString("name"));
+                user.setLogin(result.getString("login"));
+                user.setPassword(result.getString("password"));
+                user.setRole(result.getString("role"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return users;
+        return user;
     }
 
     @Override
     public long getId(User user) {
-        try (PreparedStatement stmt = connection.prepareStatement("SELECT id FROM users WHERE login=?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT id FROM users WHERE login=? AND password=?")) {
             stmt.setString(1, user.getLogin());
+            stmt.setString(2, user.getPassword());
             ResultSet result = stmt.executeQuery();
-            result.next();
-            return result.getLong("id");
+            if (result.next()) {
+                return result.getLong("id");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

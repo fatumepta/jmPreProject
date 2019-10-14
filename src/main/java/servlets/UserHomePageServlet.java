@@ -1,7 +1,5 @@
 package servlets;
 
-import services.UserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,14 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet(name = "ShowUsersServlet", urlPatterns = "/users")
-public class ShowUsersServlet extends HttpServlet {
-    private UserService service = UserService.getInstance();
+@WebServlet(name = "UserHomePageServlet", urlPatterns = "/user")
+public class UserHomePageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setStatus(200);
-        request.setAttribute("users", service.getAll());
-        request.getRequestDispatcher("view/admin/showUsers.jsp").forward(request, response);
+        response.sendRedirect("view/user/userHome.jsp");
     }
 }

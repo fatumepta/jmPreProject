@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
-import java.util.Optional;
 
 // SQL key-words is UPPER CASE now
 public class UserDaoHibernateImplementation implements UserDao {
@@ -16,9 +15,9 @@ public class UserDaoHibernateImplementation implements UserDao {
     }
 
     @Override
-    public Optional<User> get(long id) {
+    public User get(long id) {
         Transaction transaction = session.beginTransaction();
-        Optional<User> user = Optional.of(session.get(User.class, id));
+        User user = session.get(User.class, id);
 
         transaction.commit();
         return user;
