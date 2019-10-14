@@ -22,7 +22,11 @@ public class LogInServlet extends HttpServlet {
 
         if (userId != -1) {
             request.getSession().setAttribute("user", service.get(userId));
-            response.sendRedirect("/user");
+            if (service.get(userId).getRole().equals("user")) {
+                response.sendRedirect("/user");
+            } else {
+                response.sendRedirect("/users");
+            }
         } else {
             request.setAttribute("message", "No such combination of login and password");
             request.getRequestDispatcher("index.jsp").forward(request, response);
