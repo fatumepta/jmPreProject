@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <%@ include file="navi.jsp" %>
+<%@ include file="../navi.jsp" %>
 
     <% if (request.getAttribute("message") != null) { %>
         <h2 style="color: crimson" align="middle"><p><%= request.getAttribute("message") %></p></h2>

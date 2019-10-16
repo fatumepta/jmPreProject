@@ -34,6 +34,6 @@ public class AddUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setStatus(200);
-        request.getRequestDispatcher("view/admin/addUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/adminview/addUser.jsp").forward(request, response);
     }
 }

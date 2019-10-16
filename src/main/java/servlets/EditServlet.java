@@ -24,7 +24,7 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("password", userToBeEdited.getPassword());
         request.setAttribute("role", userToBeEdited.getRole());
 
-        request.getRequestDispatcher("view/admin/editUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/adminview/editUser.jsp").forward(request, response);
     }
 
     @Override

@@ -12,6 +12,7 @@ public class UserHomePageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setStatus(200);
-        response.sendRedirect("view/user/userHome.jsp");
+        System.out.println(request.getContextPath());
+        request.getRequestDispatcher("/userview/userHome.jsp").forward(request, response);
     }
 }

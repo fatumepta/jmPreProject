@@ -20,7 +20,7 @@
 </head>
 <body>
 
-    <%@ include file="navi.jsp" %>
+<%@ include file="../navi.jsp" %>
 
     <% List<User> users = (List<User>) request.getAttribute("users"); %>
     <fieldset>

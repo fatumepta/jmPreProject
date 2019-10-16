@@ -29,11 +29,11 @@ public class LogInServlet extends HttpServlet {
             }
         } else {
             request.setAttribute("message", "No such combination of login and password");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            doGet(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

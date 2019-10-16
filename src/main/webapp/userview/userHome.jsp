@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<%@ include file="../admin/navi.jsp" %>
+<%@ include file="../navi.jsp" %>
 
 <% User user = (User) session.getAttribute("user"); %>
 <fieldset>

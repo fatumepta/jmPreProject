@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<%@ include file="navi.jsp" %>
+<%@ include file="../navi.jsp" %>
 
 <form action="/edit" method="post">
     <fieldset>

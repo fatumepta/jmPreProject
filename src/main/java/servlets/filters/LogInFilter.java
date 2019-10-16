@@ -16,16 +16,21 @@ public class LogInFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-        HttpSession session = request.getSession(false);
-        String loginURI = request.getContextPath() + "/login";
+        HttpSession session = request.getSession();
 
-        boolean loggedIn = session != null && session.getAttribute("user") != null;
-        boolean loginRequest = request.getRequestURI().equals(loginURI);
+        // if user logged in
+        if (session.getAttribute("user") != null) {
 
-        if (loggedIn || loginRequest) {
-            chain.doFilter(request, response);
+            // if logged in user tries to get /login page (index.jsp)
+            if (request.getRequestURI().equals("/login")) {
+                response.sendRedirect("/user");
+            } else {
+                chain.doFilter(request, response);
+            }
+
+            // if user didn't log in
         } else {
-            response.sendRedirect(loginURI);
+            request.getRequestDispatcher("/login").forward(request, response);
         }
     }
 
