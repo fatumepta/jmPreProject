@@ -16,6 +16,10 @@
             margin: auto;
         }
 
+        .button {
+            align-content: center;
+        }
+
     </style>
 </head>
 <body>
@@ -44,6 +48,12 @@
             </th>
         </tr>
     </table>
+
+    <form action="/user" method="post">
+        <p>
+            <button style="height:30px;width:220px"><b> << LOGOUT >> </b></button>
+        </p>
+    </form>
 </fieldset>
 
 </body>

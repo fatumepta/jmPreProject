@@ -42,8 +42,8 @@
                     <th><%= user.getRole() %>
                     </th>
                     <th>
-                        <a href=<%= "/edit?id=" + id %>> edit </a>
-                        <a href=<%= "delete?id=" + id %>> delete </a>
+                        <a href=<%= "/admin/edit?id=" + id %>> edit </a>
+                        <a href=<%= "/admin/delete?id=" + id %>> delete </a>
                     </th>
                 </tr>
                 <% } %>

@@ -10,13 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "DeleteUserServlet", urlPatterns = "/delete")
+@WebServlet(name = "DeleteUserServlet", urlPatterns = "/admin/delete")
 public class DeleteUserServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setStatus(200);
         service.delete(Long.parseLong(request.getParameter("id")));
-        response.sendRedirect("/users");
+        response.sendRedirect("/admin/users");
     }
 }

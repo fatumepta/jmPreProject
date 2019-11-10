@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "AddUserServlet", urlPatterns = "/add")
+@WebServlet(name = "AddUserServlet", urlPatterns = "/admin/add")
 public class AddUserServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setStatus(200);
-
         String login = request.getParameter("login");
         if (service.add(
                 new User(
@@ -25,7 +23,7 @@ public class AddUserServlet extends HttpServlet {
                         login,
                         request.getParameter("password"),
                         request.getParameter("role")))) {
-            response.sendRedirect("/users");
+            response.sendRedirect("/admin/users");
         } else {
             request.setAttribute("message", "user with login [" + login + "] already exists!");
             doGet(request, response);
@@ -34,6 +32,6 @@ public class AddUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setStatus(200);
-        request.getRequestDispatcher("/adminview/addUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/addUser.jsp").forward(request, response);
     }
 }

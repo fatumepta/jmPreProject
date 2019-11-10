@@ -26,8 +26,9 @@ public class UserDaoHibernateImplementation implements UserDao {
     @Override
     public long getId(User user) {
         Transaction transaction = session.beginTransaction();
-        List<User> users = session.createQuery("FROM User WHERE login=:login")
+        List<User> users = session.createQuery("FROM User WHERE login=:login AND password=:password")
                 .setParameter("login", user.getLogin())
+                .setParameter("password", user.getPassword())
                 .list();
         transaction.commit();
 

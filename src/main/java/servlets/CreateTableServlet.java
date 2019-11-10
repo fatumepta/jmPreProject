@@ -10,13 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "CreateTableServlet", urlPatterns = "/create")
+@WebServlet(name = "CreateTableServlet", urlPatterns = "/admin/create")
 public class CreateTableServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setStatus(200);
         service.createTable();
-        response.sendRedirect("/users");
+        response.sendRedirect("/admin/users");
     }
 }

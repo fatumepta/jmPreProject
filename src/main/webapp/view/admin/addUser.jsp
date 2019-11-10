@@ -22,7 +22,7 @@
         <h2 style="color: crimson" align="middle"><p><%= request.getAttribute("message") %></p></h2>
     <% } %>
 
-        <form action="/add" method="post">
+<form action="/admin/add" method="post">
             <fieldset>
                 <legend><h2><b>ADD</b></h2></legend>
                 name <input type="text" name="name" required>

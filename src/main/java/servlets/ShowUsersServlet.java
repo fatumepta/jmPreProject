@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "ShowUsersServlet", urlPatterns = "/users")
+@WebServlet(name = "ShowUsersServlet", urlPatterns = "/admin/users")
 public class ShowUsersServlet extends HttpServlet {
     private UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setStatus(200);
         request.setAttribute("users", service.getAll());
-        request.getRequestDispatcher("/adminview/showUsers.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/showUsers.jsp").forward(request, response);
     }
 }

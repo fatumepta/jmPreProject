@@ -17,7 +17,7 @@
 
 <%@ include file="../navi.jsp" %>
 
-<form action="/edit" method="post">
+<form action="/admin/edit" method="post">
     <fieldset>
         <legend><h2><b>EDIT</b></h2></legend>
         name <input type="text" name="name" value=<%= request.getAttribute("name") %>>
